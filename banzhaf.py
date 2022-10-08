@@ -11,7 +11,8 @@ def banzhaf(seq):
 			new_coalition = cur_coalition + [i]
 			find_winning_coalitions(votes, i+1, new_coalition, winning_coalitions)
 
-	votes_required, votes, n, winning_coalitions = seq[0], seq[1:], len(votes), []
+	votes_required, votes, winning_coalitions = seq[0], seq[1:], []
+	n = len(votes)
 	find_winning_coalitions(votes, 0, [],  winning_coalitions)
 
 	power = {voter: 0 for voter in range(0, len(votes))}
@@ -36,5 +37,6 @@ def main():
 	banzhaf([args.required] + args.votes)
 
 if __name__ == '__main__':
-	# banzhaf([65, 47, 46, 17, 16, 2]) -> {0.333, 0.259, 0.185, 0.111, 0.111}
+	# banzhaf 65 47 46 17 16 2 -> {0.333, 0.259, 0.185, 0.111, 0.111}
+	# banzhaf 6 5 4 3 2 -> {0.417, 0.25, 0.25, 0.083}
 	main()
